@@ -37,7 +37,7 @@ def create_prompt(category):
 
     # Prompt yêu cầu Gemini viết thông điệp
     # Thay đổi prompt nếu bạn muốn thông điệp theo phong cách khác
-    return f"Viết một thông điệp ngắn gọn (khoảng 1-2 câu), ý nghĩa, tích cực và sâu sắc bằng tiếng Việt, liên quan đến chủ đề '{theme}'. Thông điệp này dành cho một người bất kỳ đọc vào buổi sáng để có thêm suy ngẫm hoặc động lực cho ngày mới. Chỉ trả về nội dung thông điệp, không có lời chào hay giải thích thêm."
+    return f"Viết một thông điệp ngắn gọn (khoảng 4-5 câu), ý nghĩa, cực kì tích cực và sâu sắc bằng tiếng Việt, liên quan đến chủ đề '{theme}'. Thông điệp này dành cho một người bất kỳ đọc vào buổi sáng để có thêm suy ngẫm hoặc động lực cho ngày mới. Chỉ trả về nội dung thông điệp, không có lời chào hay giải thích thêm."
 
 # --- Hàm gọi Gemini API ---
 def get_gemini_message(prompt):
