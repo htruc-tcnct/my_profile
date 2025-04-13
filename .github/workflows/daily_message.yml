@@ -4,7 +4,7 @@ name: Update Daily Messages
 # Bạn có thể thay đổi giờ chạy theo ý muốn (xem cú pháp cron)
 on:
   schedule:
-    - cron: '45 8 * * *' # 00:05 UTC daily
+    - cron: '0 17 * * *' # 00:05 UTC daily
   # Cho phép chạy thủ công từ tab Actions trên GitHub
   workflow_dispatch:
 
