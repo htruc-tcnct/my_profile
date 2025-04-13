@@ -20,11 +20,7 @@
             --primary-accent: #ff6b94;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Quicksand', sans-serif;
@@ -39,68 +35,41 @@
             line-height: 1.6;
         }
 
-        .container {
-            max-width: 900px;
-            width: 100%;
-            text-align: center;
-        }
-
-        header {
-            margin-bottom: 40px;
-        }
+        .container { max-width: 900px; width: 100%; text-align: center; }
+        header { margin-bottom: 40px; }
 
         h1 {
             font-family: 'Dancing Script', cursive;
-            font-size: 3.5rem;
-            color: var(--primary-accent);
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            font-size: 3.5rem; color: var(--primary-accent);
+            margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
 
-        .subtitle {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            margin-bottom: 10px;
-        }
-
-        .message-time {
-            font-size: 0.9rem;
-            color: #888;
-            margin-bottom: 20px;
-        }
+        .subtitle { font-size: 1.2rem; color: var(--text-light); margin-bottom: 10px; }
+        .message-time { font-size: 0.9rem; color: #888; margin-bottom: 20px; }
 
         .daily-limit-info {
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 10px 15px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            color: #777;
-            display: inline-block;
-            margin-bottom: 30px;
-            border: 1px solid #eee;
+            background-color: rgba(255, 255, 255, 0.8); padding: 10px 15px;
+            border-radius: 50px; font-size: 0.9rem; color: #777;
+            display: inline-block; margin-bottom: 30px; border: 1px solid #eee;
         }
-
-        .daily-limit-info i {
-            margin-right: 5px;
-            color: var(--primary-accent);
-        }
+        .daily-limit-info i { margin-right: 5px; color: var(--primary-accent); }
 
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
-            grid-gap: 25px; /* Increased gap */
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Thu nhỏ minmax để vừa hơn */
+            grid-gap: 20px; /* Giảm gap */
         }
 
         .message-card {
-            aspect-ratio: 1 / 1; /* Make cards square */
-            min-height: 200px;
-            border-radius: 20px;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            aspect-ratio: 1 / 1; /* Giữ hình vuông cho thẩm mỹ */
+            min-height: 180px; /* Điều chỉnh lại nếu cần */
+            border-radius: 20px; cursor: pointer; position: relative;
+            overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.08);
             transition: transform 0.4s ease, box-shadow 0.4s ease;
-            perspective: 1000px; /* Needed for 3D flip */
+            display: flex; /* Dùng flex để căn giữa nội dung mặt trước */
+            align-items: center;
+            justify-content: center;
+            padding: 15px; /* Padding cho nội dung mặt trước */
         }
 
         .message-card:hover {
@@ -114,173 +83,115 @@
         .yellow-card { background: linear-gradient(135deg, #fff5ba, #ffeaa7); }
         .lavender-card { background: linear-gradient(135deg, #d0a9e5, #e1bee7); }
 
-        /* Card Flip Container */
-        .card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1); /* Smooth flip */
-            transform-style: preserve-3d;
-        }
-
-        .message-card.flipped .card-inner {
-            transform: rotateY(180deg);
-        }
-
-        /* Card Front and Back common styles */
-        .card-front,
-        .card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            -webkit-backface-visibility: hidden; /* Safari */
-            backface-visibility: hidden;
+        /* Chỉ cần style cho card-front */
+        .card-front {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            width: 100%;
+            height: 100%;
         }
 
-        .card-back {
-            transform: rotateY(180deg); /* Hide back initially */
-        }
-
-        /* Card Front Content */
         .card-icon {
-            font-size: 3.5rem; /* Adjusted size */
+            font-size: 3rem; /* Nhỏ hơn chút */
             color: white;
-            margin-bottom: 15px;
+            margin-bottom: 10px; /* Giảm margin */
             text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
         }
-        .pink-card .card-icon, .yellow-card .card-icon { color: rgba(0,0,0,0.5); text-shadow: none;} /* Darker icons for light cards */
+        .pink-card .card-icon, .yellow-card .card-icon { color: rgba(0,0,0,0.5); text-shadow: none;}
 
         .card-title {
             font-family: 'Dancing Script', cursive;
-            font-size: 1.7rem; /* Adjusted size */
+            font-size: 1.5rem; /* Nhỏ hơn chút */
             color: white;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
         }
         .pink-card .card-title, .yellow-card .card-title { color: rgba(0,0,0,0.7); text-shadow: none;}
 
-        /* Card Back Content */
-        .message-content {
-            font-size: 1.05rem; /* Adjusted size */
-            line-height: 1.6;
-            color: white; /* Default to white */
-            font-weight: 500;
-        }
-        /* Specific text colors for lighter cards */
-        .pink-card .message-content,
-        .yellow-card .message-content {
-            color: #555; /* Darker text color for readability */
-        }
+        footer { margin-top: 60px; color: #aaa; font-size: 0.9rem; }
 
-        footer {
-            margin-top: 60px;
-            color: #aaa;
-            font-size: 0.9rem;
-        }
-
-        /* Modal Styles */
+        /* Modal Styles (Cho cả 2 modal) */
         .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.7); display: flex; align-items: center;
+            justify-content: center; z-index: 1000; opacity: 0;
+            pointer-events: none; transition: opacity 0.3s ease;
         }
-
-        .modal.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
+        .modal.active { opacity: 1; pointer-events: auto; }
 
         .modal-content {
-            background-color: white;
-            padding: 35px 40px; /* More padding */
-            border-radius: 25px;
-            max-width: 450px; /* Slightly smaller */
-            width: 90%;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            background-color: white; padding: 30px 35px; border-radius: 20px;
+            max-width: 500px; width: 90%; text-align: center; position: relative;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2); max-height: 80vh; /* Giới hạn chiều cao */
+            display: flex; flex-direction: column; /* Để nội dung scroll nếu cần */
         }
 
         .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 1.6rem;
-            color: #bbb;
-            cursor: pointer;
-            transition: color 0.3s ease, transform 0.3s ease;
+            position: absolute; top: 15px; right: 15px; font-size: 1.6rem;
+            color: #bbb; cursor: pointer; transition: color 0.3s ease, transform 0.3s ease;
         }
+        .close-modal:hover { color: #333; transform: rotate(90deg); }
 
-        .close-modal:hover {
-            color: #333;
-            transform: rotate(90deg);
+        .modal-header { /* Thêm header cho modal thông điệp */
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             margin-bottom: 20px;
+             color: var(--primary-accent);
         }
-
-        .modal-title {
-            font-family: 'Dancing Script', cursive;
+         .modal-header .modal-card-icon { /* Icon trong modal header */
             font-size: 2rem;
-            margin-bottom: 25px;
-            color: var(--primary-accent);
+            margin-right: 15px;
+         }
+        .modal-title { /* Tiêu đề trong modal */
+            font-family: 'Dancing Script', cursive; font-size: 2rem; margin: 0; /* Bỏ margin cũ */
         }
 
-        .modal-message {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            margin-bottom: 30px;
-            color: var(--text-light);
+        .modal-body { /* Thêm body để chứa nội dung scroll */
+            overflow-y: auto; /* Cho phép scroll nội dung */
+            margin-bottom: 25px;
+            padding-right: 10px; /* Thêm padding tránh scrollbar che chữ */
         }
+
+        .modal-message-content, /* Đổi tên class nội dung */
+        .modal-message { /* Dùng chung style cho cả 2 modal */
+            font-size: 1.1rem; line-height: 1.7; color: var(--text-light);
+            text-align: left; /* Căn trái nội dung cho dễ đọc */
+        }
+         #limit-modal .modal-message { text-align: center; } /* Riêng modal limit thì căn giữa */
+
 
         .modal-button {
-            display: inline-block;
-            background: linear-gradient(to right, #ff6b94, #a1c4fd); /* Updated gradient */
-            color: white;
-            padding: 12px 35px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 5px 15px rgba(255, 107, 148, 0.3);
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
+            display: inline-block; background: linear-gradient(to right, #ff6b94, #a1c4fd);
+            color: white; padding: 12px 35px; border-radius: 50px; text-decoration: none;
+            font-weight: 600; transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 148, 0.3); border: none;
+            cursor: pointer; font-size: 1rem; margin-top: auto; /* Đẩy nút xuống cuối */
         }
-
-        .modal-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(255, 107, 148, 0.4);
-        }
+        .modal-button:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(255, 107, 148, 0.4); }
 
         /* Responsive */
         @media (max-width: 768px) {
             h1 { font-size: 2.8rem; }
             .subtitle { font-size: 1.1rem; }
-            .grid-container { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; }
-            .message-card { min-height: 150px; }
-            .card-icon { font-size: 3rem; }
-            .card-title { font-size: 1.5rem; }
-            .message-content { font-size: 0.95rem; }
+            .grid-container { grid-template-columns: repeat(2, 1fr); gap: 15px; } /* 2 cột */
+            .message-card { min-height: 160px; }
+            .card-icon { font-size: 2.5rem; }
+            .card-title { font-size: 1.3rem; }
         }
         @media (max-width: 480px) {
             h1 { font-size: 2.4rem; }
             .subtitle { font-size: 1rem; }
-            .grid-container { grid-template-columns: 1fr; } /* Single column */
-             .message-card { min-height: 180px; } /* Slightly taller in single column */
-        }
+             .grid-container { grid-template-columns: repeat(2, 1fr); gap: 10px; } /* Vẫn 2 cột nhưng gap nhỏ hơn */
+            .message-card { min-height: 140px; padding: 10px;}
+             .card-icon { font-size: 2rem; margin-bottom: 5px;}
+             .card-title { font-size: 1.1rem;}
+            .modal-content { padding: 25px 20px;}
+            .modal-title { font-size: 1.7rem;}
+            .modal-message-content, .modal-message { font-size: 1rem;}
 
+        }
     </style>
 </head>
 <body>
@@ -296,47 +207,27 @@
 
         <div class="grid-container">
             <div class="message-card coffee-card" data-card="coffee">
-                <div class="card-inner">
-                    <div class="card-front">
-                        <i class="fas fa-coffee card-icon"></i>
-                        <h3 class="card-title">Cà Phê</h3>
-                    </div>
-                    <div class="card-back">
-                        <p class="message-content">Đang tải thông điệp...</p>
-                    </div>
+                <div class="card-front">
+                    <i class="fas fa-coffee card-icon"></i>
+                    <h3 class="card-title">Cà Phê</h3>
                 </div>
-            </div>
+                </div>
             <div class="message-card pink-card" data-card="love">
-                 <div class="card-inner">
-                    <div class="card-front">
-                        <i class="fas fa-heart card-icon"></i>
-                        <h3 class="card-title">Tình Yêu</h3>
-                    </div>
-                    <div class="card-back">
-                        <p class="message-content">Đang tải thông điệp...</p>
-                    </div>
+                 <div class="card-front">
+                    <i class="fas fa-heart card-icon"></i>
+                    <h3 class="card-title">Tình Yêu</h3>
                 </div>
             </div>
             <div class="message-card yellow-card" data-card="inspiration">
-                 <div class="card-inner">
-                    <div class="card-front">
-                        <i class="fas fa-lightbulb card-icon"></i>
-                        <h3 class="card-title">Cảm Hứng</h3>
-                    </div>
-                    <div class="card-back">
-                        <p class="message-content">Đang tải thông điệp...</p>
-                    </div>
+                 <div class="card-front">
+                    <i class="fas fa-lightbulb card-icon"></i>
+                    <h3 class="card-title">Cảm Hứng</h3>
                 </div>
             </div>
             <div class="message-card lavender-card" data-card="music">
-                 <div class="card-inner">
-                    <div class="card-front">
-                        <i class="fas fa-music card-icon"></i>
-                        <h3 class="card-title">Âm Nhạc</h3>
-                    </div>
-                    <div class="card-back">
-                        <p class="message-content">Đang tải thông điệp...</p>
-                    </div>
+                 <div class="card-front">
+                    <i class="fas fa-music card-icon"></i>
+                    <h3 class="card-title">Âm Nhạc</h3>
                 </div>
             </div>
         </div>
@@ -348,26 +239,38 @@
 
     <div class="modal" id="limit-modal">
         <div class="modal-content">
-            <span class="close-modal" id="close-modal"><i class="fas fa-times"></i></span>
+            <span class="close-modal" data-close-modal><i class="fas fa-times"></i></span>
             <h3 class="modal-title">Oops! Đã Đạt Giới Hạn</h3>
             <p class="modal-message">Bạn iu đã mở thông điệp hôm nay rồi nè. Hẹn gặp lại vào ngày mai nha!</p>
-            <button class="modal-button" id="ok-button">Okie nè!</button>
+            <button class="modal-button" data-close-modal>Okie nè!</button>
+        </div>
+    </div>
+
+    <div class="modal" id="message-modal">
+        <div class="modal-content">
+             <span class="close-modal" data-close-modal><i class="fas fa-times"></i></span>
+             <div class="modal-header">
+                 <span class="modal-card-icon"></span>
+                 <h3 class="modal-title" id="message-modal-title">Chủ đề</h3>
+             </div>
+             <div class="modal-body">
+                 <p class="modal-message-content" id="message-modal-content">Nội dung thông điệp...</p>
+             </div>
+             <button class="modal-button" data-close-modal>Đã hiểu</button>
         </div>
     </div>
 
     <script>
         // ----- JavaScript Logic -----
 
+        let dailyMessages = {}; // Biến toàn cục để lưu trữ thông điệp đã fetch
+
         // Hàm fetch dữ liệu messages.json
         async function fetchMessages() {
             try {
-                // Thêm cache busting để luôn lấy file mới nhất
                 const response = await fetch(`messages.json?t=${new Date().getTime()}`);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const data = await response.json();
-                 // Kiểm tra xem data có phải object không và có đủ key không
                 if (typeof data === 'object' && data !== null && ['coffee', 'love', 'inspiration', 'music'].every(key => key in data)) {
                     return data;
                 } else {
@@ -376,8 +279,7 @@
                 }
             } catch (error) {
                 console.error("Could not fetch or parse messages:", error);
-                // Trả về object với thông điệp lỗi nếu có sự cố
-                return {
+                return { // Fallback messages
                     coffee: "Hmm, có lỗi khi tải thông điệp Cà Phê. Vui lòng thử lại sau.",
                     love: "Hmm, có lỗi khi tải thông điệp Tình Yêu. Vui lòng thử lại sau.",
                     inspiration: "Hmm, có lỗi khi tải thông điệp Cảm Hứng. Vui lòng thử lại sau.",
@@ -399,81 +301,64 @@
             const today = new Date().toLocaleDateString();
             const lastOpened = localStorage.getItem('lastMessageDate');
             const cardOpened = localStorage.getItem('cardOpened');
-
-            // Clear dữ liệu cũ nếu sang ngày mới
             if (lastOpened && lastOpened !== today) {
                  localStorage.removeItem('lastMessageDate');
                  localStorage.removeItem('cardOpened');
                  return { canOpen: true, openedCard: null };
             }
-
             if (lastOpened === today && cardOpened) {
                 return { canOpen: false, openedCard: cardOpened };
             }
-
             return { canOpen: true, openedCard: null };
         }
 
-        // Cập nhật nội dung thông điệp lên các thẻ
-        function updateCardMessages(dailyMessages) {
-            const categories = ['coffee', 'love', 'inspiration', 'music'];
+        // *** MỚI: Hiển thị Modal thông điệp ***
+        function showMessageModal(cardType) {
+            const message = dailyMessages[cardType] || "Lỗi: Không tìm thấy thông điệp.";
+            const cardElement = document.querySelector(`.message-card[data-card="${cardType}"]`);
+            const iconElement = cardElement.querySelector('.card-icon');
+            const titleElement = cardElement.querySelector('.card-title');
 
-            categories.forEach(category => {
-                const message = dailyMessages[category] || "Thông điệp cho hôm nay đang được chuẩn bị...";
-                const cardBackContent = document.querySelector(`.message-card[data-card="${category}"] .card-back .message-content`);
-                if (cardBackContent) {
-                    cardBackContent.textContent = message;
-                } else {
-                    console.error(`Card back content for ${category} not found.`);
-                }
-            });
+            const modal = document.getElementById('message-modal');
+            const modalTitle = document.getElementById('message-modal-title');
+            const modalContent = document.getElementById('message-modal-content');
+            const modalIcon = modal.querySelector('.modal-card-icon');
+
+            modalTitle.textContent = titleElement ? titleElement.textContent : "Thông điệp"; // Lấy title từ card
+            modalContent.textContent = message;
+            if (iconElement) { // Copy icon từ card vào modal
+                 modalIcon.className = iconElement.className.replace('card-icon', 'modal-card-icon'); // Giữ các class fas fa-coffee...
+                 modalIcon.style.color = window.getComputedStyle(iconElement).color; // Lấy màu icon
+            } else {
+                modalIcon.textContent = ''; // Xóa icon nếu không tìm thấy
+            }
+
+            modal.classList.add('active');
         }
 
         // Thiết lập sự kiện click cho các thẻ
         function setupCardListeners() {
             const cards = document.querySelectorAll('.message-card');
-            const limitStatus = checkDailyLimit();
-
-            // Nếu đã mở thẻ hôm nay, tự động lật thẻ đó lên
-            if (!limitStatus.canOpen && limitStatus.openedCard) {
-                const openedCard = document.querySelector(`.message-card[data-card="${limitStatus.openedCard}"]`);
-                if (openedCard) {
-                    // Không cần delay nếu muốn hiển thị ngay trạng thái đã mở
-                    openedCard.classList.add('flipped');
-                }
-            }
 
             cards.forEach(card => {
                 card.addEventListener('click', function() {
                     const cardType = this.getAttribute('data-card');
-                    const currentLimitStatus = checkDailyLimit(); // Kiểm tra lại limit mỗi khi click
+                    const currentLimitStatus = checkDailyLimit();
 
-                    // Nếu không thể mở (đã mở rồi)
                     if (!currentLimitStatus.canOpen) {
-                        // Nếu click vào thẻ *khác* thẻ đã mở -> Hiện modal
-                        if (currentLimitStatus.openedCard !== cardType) {
-                            showLimitModal();
+                        // Nếu đã mở, cho phép click lại thẻ đã mở để xem lại
+                        if (currentLimitStatus.openedCard === cardType) {
+                             showMessageModal(cardType); // Hiển thị lại modal thông điệp
+                        } else {
+                             showLimitModal(); // Hiện modal giới hạn nếu click thẻ khác
                         }
-                        // Nếu click lại thẻ *đã mở* -> không làm gì cả (nó đã flipped)
                         return;
                     }
 
-                    // Nếu có thể mở và thẻ này chưa được lật
-                    if (!this.classList.contains('flipped')) {
-                         // Lưu trạng thái đã mở
-                        localStorage.setItem('lastMessageDate', new Date().toLocaleDateString());
-                        localStorage.setItem('cardOpened', cardType);
-
-                        // Lật thẻ này
-                        this.classList.add('flipped');
-
-                        // (Tùy chọn) Lật lại các thẻ khác nếu chúng đang bị lật (trường hợp hiếm)
-                        cards.forEach(otherCard => {
-                            if (otherCard !== this && otherCard.classList.contains('flipped')) {
-                                // otherCard.classList.remove('flipped'); // Bỏ nếu muốn giữ thẻ đã mở
-                            }
-                        });
-                    }
+                    // Nếu được phép mở
+                    localStorage.setItem('lastMessageDate', new Date().toLocaleDateString());
+                    localStorage.setItem('cardOpened', cardType);
+                    showMessageModal(cardType); // Hiển thị modal thông điệp
                 });
             });
         }
@@ -484,34 +369,35 @@
             modal.classList.add('active');
         }
 
-        // Thiết lập sự kiện đóng modal
+        // *** MỚI: Thiết lập sự kiện đóng cho CẢ HAI modal ***
         function setupModalListeners() {
-            const closeBtn = document.getElementById('close-modal');
-            const okBtn = document.getElementById('ok-button');
-            const modal = document.getElementById('limit-modal');
+            const modals = document.querySelectorAll('.modal'); // Chọn tất cả các modal
 
-            function closeModal() {
-                modal.classList.remove('active');
-            }
+            modals.forEach(modal => {
+                const closeButtons = modal.querySelectorAll('[data-close-modal]'); // Chọn các nút đóng (X và button)
 
-            if(closeBtn) closeBtn.addEventListener('click', closeModal);
-            if(okBtn) okBtn.addEventListener('click', closeModal);
+                function closeModal() {
+                    modal.classList.remove('active');
+                }
 
-            // Đóng modal khi click ra ngoài vùng nội dung
-            if(modal) {
+                closeButtons.forEach(button => {
+                    button.addEventListener('click', closeModal);
+                });
+
+                // Đóng modal khi click ra ngoài vùng nội dung
                 modal.addEventListener('click', function(event) {
                     if (event.target === modal) {
                         closeModal();
                     }
                 });
-            }
+            });
         }
 
         // Chạy các hàm cần thiết khi trang tải xong
         window.addEventListener('DOMContentLoaded', async () => {
             updateDate();
-            const dailyMessages = await fetchMessages();
-            updateCardMessages(dailyMessages);
+            dailyMessages = await fetchMessages(); // Lưu thông điệp vào biến toàn cục
+            // Không cần updateCardMessages nữa vì không có mặt sau
             setupCardListeners();
             setupModalListeners();
         });
