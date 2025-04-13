@@ -1,0 +1,47 @@
+name: Update Daily Messages
+
+# Chạy hàng ngày vào lúc 00:05 UTC (khoảng 7:05 sáng Việt Nam)
+# Bạn có thể thay đổi giờ chạy theo ý muốn (xem cú pháp cron)
+on:
+  schedule:
+    - cron: '5 0 * * *' # 00:05 UTC daily
+  # Cho phép chạy thủ công từ tab Actions trên GitHub
+  workflow_dispatch:
+
+jobs:
+  update_messages:
+    runs-on: ubuntu-latest # Chạy trên máy ảo Ubuntu mới nhất
+    permissions:
+      contents: write # Cấp quyền cho Action để ghi vào repo (commit & push)
+
+    steps:
+      # Bước 1: Checkout code từ repository về máy ảo runner
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Bước 2: Thiết lập môi trường Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10' # Chọn phiên bản Python
+
+      # Bước 3: Cài đặt các thư viện Python cần thiết
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install google-generativeai
+
+      # Bước 4: Chạy script Python để cập nhật file messages.json
+      - name: Run script to update messages
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }} # Truyền API Key từ Secret vào script
+        run: python update_messages.py
+
+      # Bước 5: Commit và Push thay đổi vào repository
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'github-actions[bot]' # Tên user commit
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com' # Email user commit
+          # Chỉ commit nếu file messages.json thực sự thay đổi
+          git diff --quiet messages.json || (git add messages.json && git commit -m "📝 Cập nhật thông điệp hàng ngày tự động" && git push)
+          echo "Commit and push step completed."
